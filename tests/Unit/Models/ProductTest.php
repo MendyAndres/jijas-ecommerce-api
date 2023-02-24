@@ -26,4 +26,11 @@ class ProductTest extends TestCase
 
         $this->assertInstanceOf(Subcategory::class, $product->subcategory);
     }
+
+    public function testHasManyFeedback(): void
+    {
+        $product = new Product();
+
+        $this->assertInstanceOf(Collection::class, $product->feedbacks);
+    }
 }
