@@ -21,4 +21,9 @@ class Product extends Model
     {
         return $this->belongsTo(Subcategory::class);
     }
+
+    public function feedbacks(): HasMany
+    {
+        return $this->hasMany(Feedback::class);
+    }
 }
