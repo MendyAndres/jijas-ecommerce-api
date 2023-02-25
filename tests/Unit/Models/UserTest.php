@@ -33,4 +33,11 @@ class UserTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $user->feedbacks);
     }
+
+    public function testHasManyCarts(): void
+    {
+        $user = new User();
+
+        $this->assertInstanceOf(Collection::class, $user->carts);
+    }
 }
