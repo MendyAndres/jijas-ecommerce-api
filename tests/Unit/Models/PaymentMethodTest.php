@@ -2,9 +2,10 @@
 
 namespace Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\PaymentMethod;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PaymentMethodTest extends TestCase
@@ -16,5 +17,12 @@ class PaymentMethodTest extends TestCase
         $paymentMethod = PaymentMethod::factory()->create();
 
         $this->assertInstanceOf(User::class, $paymentMethod->user);
+    }
+
+    public function testHasManyPayments(): void
+    {
+        $paymentMethod = new PaymentMethod();
+
+        $this->assertInstanceOf(Collection::class, $paymentMethod->payments);
     }
 }

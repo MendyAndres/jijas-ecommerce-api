@@ -2,6 +2,8 @@
 
 namespace Tests\Unit\Models;
 
+use App\Models\Payment;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Order;
 use App\Models\Cart;
@@ -33,5 +35,12 @@ class OrderTest extends TestCase
         Shipping::factory()->create([ 'order_id' => $order->id]);
 
         $this->assertInstanceOf(Shipping::class, $order->shipping);
+    }
+
+    public function testHasManyPayments(): void
+    {
+        $order = new Order();
+
+        $this->assertInstanceOf(Collection::class, $order->payments);
     }
 }
