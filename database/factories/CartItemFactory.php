@@ -19,9 +19,10 @@ class CartItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'cart_id' => Cart::factory(),
-            'product_id' => Product::factory(),
-            'product_qty' => fake()->randomNumber()
+            'cart_id'     => Cart::factory(),
+            'product_id'  => Product::factory(),
+            'product_qty' => fake()->randomNumber(),
+            'amount'      => fake()->randomFloat()
         ];
     }
 }
