@@ -40,4 +40,12 @@ class UserTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $user->carts);
     }
+
+    public function testHasManyPaymentMethods(): void
+    {
+        $user = new User();
+
+        $this->assertInstanceOf(Collection::class, $user->paymentMethods);
+    }
+
 }
