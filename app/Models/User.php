@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -20,9 +21,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'user_type_id',
+        'document',
+        'last_name',
+        'birthdate',
         'email',
         'password',
+
     ];
 
     /**
@@ -43,6 +50,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function setPasswordAttribute(string $password): void
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
 
     public function user_type(): BelongsTo
     {
