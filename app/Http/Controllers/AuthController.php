@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
-    private $authenticationService;
+    private AuthenticationService $authenticationService;
 
     public function __construct(AuthenticationService $authenticationService)
     {
