@@ -43,8 +43,8 @@ class CategoryController extends Controller
         return response()->json(['data' => $categoryResponse]);
     }
 
-    public function destroy(string $productId)
+    public function destroy(string $categoryId)
     {
-        return response()->json($this->categoryService->destroy($productId));
+        return response()->json($this->categoryService->destroy($categoryId));
     }
 }

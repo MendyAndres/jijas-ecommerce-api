@@ -11,7 +11,7 @@ class CategoryTest extends TestCase
 
     use RefreshDatabase;
 
-    public function testGetAllCategorys(): void
+    public function testGetAllCategories(): void
     {
         Category::factory()->count(10)->create();
         $response = $this->get('/api/categories');
