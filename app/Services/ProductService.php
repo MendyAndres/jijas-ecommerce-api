@@ -20,8 +20,13 @@ class ProductService
 
     public function show(string $productId): array
     {
-        $product = Product::findOrFail($productId);
+        $product = $this->getProductById($productId);
         return $product->toArray();
+    }
+
+    public function getProductById(string $productId): Product | null
+    {
+        return Product::findOrFail($productId);
     }
 
     public function update(Request $request, string $productId): array
