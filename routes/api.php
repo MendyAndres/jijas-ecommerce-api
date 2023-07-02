@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,12 @@ Route::middleware('auth:api')->group(
 Route::resource('products', ProductController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('subcategories', SubcategoryController::class);
+
+Route::prefix('cart')->middleware(['auth'])->group(function () {
+    Route::post('add', [CartController::class, 'addItemToCart']);
+    Route::delete('remove', [CartController::class, 'removeFromCart']);
+    Route::get('items', [CartController::class, 'getCartItems']);
+    Route::put('update', [CartController::class, 'updateCartItemQuantity']);
+    Route::delete('clear', [CartController::class, 'clearCart']);
+    Route::post('merge', [CartController::class, 'mergeCarts']);
+});
