@@ -12,6 +12,17 @@ class Order extends Model
 {
     use HasFactory;
 
+    const ORDER_CREATED   = 'created';
+    const ORDER_PAID      = 'paid';
+    const ORDER_SHIPPED   = 'shipped';
+    const ORDER_DELIVERED = 'delivered';
+    const ORDER_CANCELLED = 'cancelled';
+
+    protected $fillable = [
+        'user_id',
+        'cart_id',
+        'total_amount',
+    ];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -30,5 +41,10 @@ class Order extends Model
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }
