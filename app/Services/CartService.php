@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Cart;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class CartService
@@ -19,16 +19,26 @@ class CartService
         }
     }
 
-    public function getCartItems(Cart $cart): array
+    public function getUserCart(int $userId): Cart
+    {
+        try {
+            return DB::transaction(function() use ($userId) {
+                return Cart::where('user_id', $userId)->first();
+            });
+        } catch (\Exception $e) {
+            throw new \Exception('Error al obtener el carrito: ' . $e->getMessage());
+        }
+    }
+
+    public function getCartItems(Cart $cart): Collection
     {
         try {
             return DB::transaction(function() use ($cart) {
-                return $cart->cartItems()->with('product')->get()->toArray();
+                return $cart->cartItems()->with('product')->get();
             });
         } catch(\Exception $e) {
             throw new \Exception('Error al obtener los productos del carrito: ' . $e->getMessage());
         }
-
     }
 
     public function clearCartItems(Cart $cart): void

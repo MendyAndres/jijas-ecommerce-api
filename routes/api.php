@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 
 /*
@@ -44,3 +45,5 @@ Route::prefix('cart')->middleware(['auth'])->group(function () {
     Route::delete('clear', [CartController::class, 'clearCart']);
     Route::post('merge', [CartController::class, 'mergeCarts']);
 });
+
+Route::resource('orders', OrderController::class)->middleware(['auth']);

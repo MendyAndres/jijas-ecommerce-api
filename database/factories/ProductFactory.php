@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'subcategory_id' => Subcategory::factory(),
             'title'          => fake()->title,
             'description'    => fake()->text,
-            'price'          => fake()->randomFloat(),
+            'price'          => fake()->randomFloat(2, 0, 2000),
         ];
     }
 }

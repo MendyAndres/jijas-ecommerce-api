@@ -21,6 +21,7 @@ class OrderFactory extends Factory
         return [
             'cart_id'      => Cart::factory(),
             'user_id'      => User::factory(),
+            'status'       => 'created',
             'total_amount' => fake()->randomFloat(),
         ];
     }
